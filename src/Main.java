@@ -13,6 +13,6 @@ public class Main extends Script {
 
     @Override
     public int onLoop() throws InterruptedException {
-        return 0;
+        return timeOut.generateTimeout();
     }
 }
