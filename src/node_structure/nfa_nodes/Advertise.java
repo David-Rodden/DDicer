@@ -10,12 +10,12 @@ public class Advertise extends NFANode implements MessageListener {
     private boolean receivedTrade;
 
     public Advertise(final NFAHandler handler) {
-        super(handler);
+        super(handler, "Advertising");
         this.receivedTrade = false;
     }
 
     @Override
-    public void action() {
+    protected void action() {
         if (!receivedTrade) {
             getHandler().getRef().getKeyboard().typeString("Testing", true);
             return;
@@ -30,11 +30,15 @@ public class Advertise extends NFANode implements MessageListener {
     }
 
     @Override
-    public NFANode determine() {
+    protected NFANode determine() {
         if (!getHandler().getRef().getTrade().isFirstInterfaceOpen()) return null;
-        receivedTrade = false;
         getHandler().setTradeTimeStamp();
         return getSuccess();
+    }
+
+    @Override
+    protected void transition() {
+        receivedTrade = false;
     }
 
 

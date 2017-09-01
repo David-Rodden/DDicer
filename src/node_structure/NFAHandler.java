@@ -22,6 +22,7 @@ public class NFAHandler {
     public void run() {
         final NFANode determined = pointer.determine();
         if (determined != null) {
+            pointer.transition();
             pointer = determined;
             return;
         }

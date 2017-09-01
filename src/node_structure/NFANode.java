@@ -7,18 +7,22 @@ import java.util.function.BooleanSupplier;
 public abstract class NFANode {
     private NFANode success, failure;
     private NFAHandler handler;
+    private String description;
 
-    public NFANode(final NFAHandler handler) {
+    protected NFANode(final NFAHandler handler, final String description) {
         this.handler = handler;
+        this.description = description;
     }
 
     protected NFAHandler getHandler() {
         return handler;
     }
 
-    public abstract void action();
+    protected abstract void action();
 
-    public abstract NFANode determine();
+    protected abstract NFANode determine();
+
+    protected abstract void transition();
 
     protected void setSuccess(final NFANode success) {
         this.success = success;
@@ -28,15 +32,15 @@ public abstract class NFANode {
         this.failure = failure;
     }
 
-    public NFANode getSuccess() {
+    protected NFANode getSuccess() {
         return success;
     }
 
-    public NFANode getFailure() {
+    protected NFANode getFailure() {
         return failure;
     }
 
-    public void sleepUntil(final BooleanSupplier condition) {
+    protected void sleepUntil(final BooleanSupplier condition) {
         new SleepAction(condition, 3500).sleep();
     }
 }
