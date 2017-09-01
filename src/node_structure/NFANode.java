@@ -1,5 +1,9 @@
 package node_structure;
 
+import node_structure.nfa_nodes.SleepAction;
+
+import java.util.function.BooleanSupplier;
+
 public abstract class NFANode {
     private NFANode success, failure;
     private NFAHandler handler;
@@ -32,6 +36,7 @@ public abstract class NFANode {
         return failure;
     }
 
-    protected void setTrader(final String name) {
+    public void sleepUntil(final BooleanSupplier condition) {
+        new SleepAction(condition, 3500).sleep();
     }
 }
