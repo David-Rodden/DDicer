@@ -16,13 +16,15 @@ public class AcceptTrade extends NFANode {
 
     @Override
     public void action() {
+        final Trade trade = getHandler().getRef().getTrade();
+        if (!trade.getTheirOffers().contains("Coins") || !trade.didOtherAcceptTrade()) return;
+        trade.acceptTrade();
+        sleepUntil(trade::isSecondInterfaceOpen);
     }
 
     @Override
     public NFANode determine() {
-        final Trade trade = getHandler().getRef().getTrade();
-        if (trade.getTheirOffers().contains("Coins") && trade.didOtherAcceptTrade())
-            return getSuccess();
+        if (getHandler().getRef().getTrade().isSecondInterfaceOpen()) return getSuccess();
         if (getHandler().getAllottedInTrade() > 15000) return getFailure();
         return null;
     }
