@@ -9,7 +9,7 @@ import org.osbot.rs07.listener.MessageListener;
 public class AcceptOffer extends NFANode implements MessageListener {
     private boolean tradeAccepted;
 
-    public AcceptOffer(final NFAHandler handler, final String description) {
+    public AcceptOffer(final NFAHandler handler) {
         super(handler, "Accepting money offered");
         tradeAccepted = false;
     }
@@ -24,6 +24,8 @@ public class AcceptOffer extends NFANode implements MessageListener {
 
     @Override
     public NFANode determine() {
+        if (getHandler().getAllottedInTrade() > 15000)
+            return getFailure();
         if (!getHandler().getRef().getTrade().isCurrentlyTrading())
             return tradeAccepted ? getSuccess() : getFailure();
         return null;

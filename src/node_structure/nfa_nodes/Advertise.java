@@ -31,14 +31,13 @@ public class Advertise extends NFANode implements MessageListener {
 
     @Override
     protected NFANode determine() {
-        if (!getHandler().getRef().getTrade().isFirstInterfaceOpen()) return null;
-        getHandler().setTradeTimeStamp();
-        return getSuccess();
+        return getHandler().getRef().getTrade().isFirstInterfaceOpen() ? getSuccess() : null;
     }
 
     @Override
     protected void transition() {
         receivedTrade = false;
+        getHandler().setTradeTimeStamp();
     }
 
 

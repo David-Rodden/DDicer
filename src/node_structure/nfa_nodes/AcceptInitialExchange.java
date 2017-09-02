@@ -27,6 +27,6 @@ public class AcceptInitialExchange extends NFANode {
 
     @Override
     protected void transition() {
-
+        getHandler().setTradeTimeStamp();
     }
 }

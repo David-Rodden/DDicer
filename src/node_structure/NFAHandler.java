@@ -3,10 +3,10 @@ package node_structure;
 
 import org.osbot.rs07.script.Script;
 
-import java.util.Timer;
-
 public class NFAHandler {
+    public static final int INIT_ROLL = -1;
     private String currentTrader;
+    private int currentRoll;
     private final Script ref;
     private NFANode pointer;
     private long tradeTimeStamp;
@@ -43,5 +43,13 @@ public class NFAHandler {
 
     public void setCurrentTrader(final String currentTrader) {
         this.currentTrader = currentTrader;
+    }
+
+    public int getCurrentRoll() {
+        return currentRoll;
+    }
+
+    public void setCurrentRoll(final int currentRoll) {
+        this.currentRoll = currentRoll;
     }
 }
