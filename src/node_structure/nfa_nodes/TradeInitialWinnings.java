@@ -20,12 +20,11 @@ public class TradeInitialWinnings extends NFANode {
     @Override
     protected NFANode determine() {
         if (getHandler().getRef().getTrade().isFirstInterfaceOpen()) return getSuccess();
-        if (getHandler().getAllottedInTrade() > 15000) return getFailure();
-        return null;
+        return getHandler().getAllottedInTrade() > 15000 ? getFailure() : null;
     }
 
     @Override
     protected void transition() {
-
+        getHandler().setTradeTimeStamp();
     }
 }
