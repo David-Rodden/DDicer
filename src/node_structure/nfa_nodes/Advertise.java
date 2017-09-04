@@ -11,7 +11,6 @@ public class Advertise extends NFANode implements MessageListener {
 
     public Advertise(final NFAHandler handler) {
         super(handler, "Advertising");
-        this.receivedTrade = false;
     }
 
     @Override

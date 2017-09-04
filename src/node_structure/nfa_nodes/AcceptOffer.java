@@ -11,7 +11,6 @@ public class AcceptOffer extends NFANode implements MessageListener {
 
     public AcceptOffer(final NFAHandler handler) {
         super(handler, "Accepting money offered");
-        tradeAccepted = false;
     }
 
     @Override

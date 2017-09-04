@@ -45,6 +45,10 @@ public class NFAHandler {
         this.currentTrader = currentTrader;
     }
 
+    public void resetCurrentTrader() {
+        currentTrader = null;
+    }
+
     public int getCurrentRoll() {
         return currentRoll;
     }
@@ -52,4 +56,5 @@ public class NFAHandler {
     public void setCurrentRoll(final int currentRoll) {
         this.currentRoll = currentRoll;
     }
+
 }
