@@ -5,7 +5,7 @@ import node_structure.NFANode;
 import org.osbot.rs07.api.Trade;
 
 public class DeclineTrade extends NFANode {
-    protected DeclineTrade(final NFAHandler handler) {
+    public DeclineTrade(final NFAHandler handler) {
         super(handler, "Other is idling, declining trade");
     }
 

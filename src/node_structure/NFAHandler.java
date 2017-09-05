@@ -1,6 +1,7 @@
 package node_structure;
 
 
+import node_structure.nfa_nodes.*;
 import org.osbot.rs07.script.Script;
 
 public class NFAHandler {
@@ -17,6 +18,34 @@ public class NFAHandler {
 
     public Script getRef() {
         return ref;
+    }
+
+    /**
+     * Initializes the flow of the NFS nodes
+     */
+    public void init() {
+        NFANode advertise = new Advertise(this), pointer = advertise;
+        NFANode declineTrade = new DeclineTrade(this);
+        declineTrade.setSuccess(pointer);
+        pointer.setSuccess(pointer = new AcceptInitialExchange(this));
+        pointer.setFailure(declineTrade);
+        pointer.setSuccess(pointer = new AcceptOffer(this));
+        pointer.setFailure(declineTrade);
+        pointer.setSuccess(pointer = new RollDice(this));
+        NFANode announceWin = new AnnounceWin(this);
+        announceWin.setSuccess(advertise);
+        pointer.setSuccess(announceWin);
+        NFANode announceLoss = new AnnounceLoss(this);
+        pointer.setFailure(pointer = announceLoss);
+        pointer.setFailure(advertise);
+        pointer.setSuccess(pointer = new TradeInitialWinnings(this));
+        pointer.setFailure(announceLoss);
+        pointer.setSuccess(pointer = new TradeWinnings(this));
+        pointer.setFailure(announceLoss);
+        pointer.setSuccess(pointer = null); //should be set to wait for other to accept when finished
+        pointer.setSuccess(pointer = new AnnouncePayout(this));
+        pointer.setSuccess(pointer = advertise);
+        this.pointer = pointer;
     }
 
     public void run() {

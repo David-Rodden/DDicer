@@ -6,7 +6,7 @@ import node_structure.NFANode;
 public class AnnouncePayout extends NFANode {
     private boolean announced;
 
-    protected AnnouncePayout(final NFAHandler handler) {
+    public AnnouncePayout(final NFAHandler handler) {
         super(handler, "Announcing that we've paid");
     }
 

@@ -5,7 +5,7 @@ import node_structure.NFANode;
 import org.osbot.rs07.api.Trade;
 
 public class TradeWinnings extends NFANode {
-    protected TradeWinnings(final NFAHandler handler) {
+    public TradeWinnings(final NFAHandler handler) {
         super(handler, "Trading winnings to " + handler.getCurrentTrader());
     }
 

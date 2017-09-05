@@ -6,7 +6,7 @@ import node_structure.NFANode;
 public class AnnounceLoss extends NFANode {
     private boolean announced;
 
-    protected AnnounceLoss(final NFAHandler handler) {
+    public AnnounceLoss(final NFAHandler handler) {
         super(handler, "Announcing that we've lost");
     }
 

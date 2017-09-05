@@ -10,7 +10,7 @@ import java.util.Random;
 public class RollDice extends NFANode {
     private Random random;
 
-    protected RollDice(final NFAHandler handler) {
+    public RollDice(final NFAHandler handler) {
         super(handler, "Rolling 0 - 100");
         try {
             random = SecureRandom.getInstance("SHA1PRNG");
